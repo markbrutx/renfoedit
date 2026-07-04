@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <script>document.documentElement.classList.add("js");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Renfo.studio — фото ребёнка → образ мечты. Лицо — на 100% родное</title>
-<meta name="description" content="Desktop-приложение для детских фотографов: батч-генерация стилизованных портретов с идеальным сохранением лица. Супергерои, принцессы, фэнтези, космос, профессии. Печать 2K, 300 dpi.">
-<meta property="og:title" content="Renfo.studio — фото ребёнка → образ мечты">
-<meta property="og:description" content="Desktop-приложение для детских фотографов: батч-генерация стилизованных портретов с идеальным сохранением лица.">
-<meta property="og:image" content="https://markbrutx.github.io/renfo-studio/img/hero-spider.jpg">
+<title>Renfo.studio — детские портреты в образах, приложение для фотографов</title>
+<meta name="description" content="Приложение для фотографов: загружаете кадры со съёмки, назначаете костюмы, на выходе — файлы 1792×2400 под печать 15×20 см. Лицо берётся с исходного кадра и не редактируется.">
+<meta property="og:title" content="Renfo.studio — детские портреты в образах, приложение для фотографов">
+<meta property="og:description" content="Приложение для фотографов: загружаете кадры со съёмки, назначаете костюмы, на выходе — файлы 1792×2400 под печать 15×20 см. Лицо берётся с исходного кадра и не редактируется.">
+<meta property="og:image" content="https://markbrutx.github.io/renfo-studio/img/ui-person.png">
 <meta property="og:url" content="https://markbrutx.github.io/renfo-studio/">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="img/logo.png">
@@ -93,7 +93,7 @@ a:hover { color: var(--accent-hover); }
   height: 60px;
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
 }
 .brand {
   display: flex;
@@ -112,15 +112,44 @@ a:hover { color: var(--accent-hover); }
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 22px;
   font-size: 13.5px;
   font-weight: 600;
 }
 .nav a { color: var(--text-2); }
 .nav a:hover { color: var(--text-1); }
-.nav .btn { margin-left: 6px; }
-@media (max-width: 720px) {
+.nav .btn { margin-left: 2px; }
+@media (max-width: 760px) {
   .nav a:not(.btn) { display: none; }
+  .nav .btn { display: none; }
+}
+
+/* ---------- lang switch ---------- */
+.lang {
+  display: flex;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  overflow: hidden;
+  flex: none;
+}
+.lang button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 6px 11px;
+  cursor: pointer;
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.lang button + button { border-left: 1px solid var(--border-strong); }
+.lang button:hover { color: var(--text-1); }
+.lang button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-text);
 }
 
 /* ---------- buttons ---------- */
@@ -151,7 +180,7 @@ a:hover { color: var(--accent-hover); }
 /* ---------- hero ---------- */
 .hero {
   position: relative;
-  padding: 108px 0 88px;
+  padding: 96px 0 72px;
   overflow: hidden;
 }
 .hero::before {
@@ -166,22 +195,27 @@ a:hover { color: var(--accent-hover); }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(30px, 5.2vw, 58px);
-  line-height: 1.14;
+  font-size: clamp(28px, 4.6vw, 52px);
+  line-height: 1.16;
   letter-spacing: -0.005em;
   margin: 26px 0 10px;
-  max-width: 15ch;
+  max-width: 22ch;
 }
-.hero h1 .accent { color: var(--accent-text); }
 .hero .sub {
   font-size: clamp(16px, 1.8vw, 19px);
   color: var(--text-2);
-  max-width: 56ch;
+  max-width: 58ch;
   margin: 18px 0 34px;
 }
 .hero-cta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.mac-note {
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-3);
+}
 .hero-meta {
-  margin-top: 26px;
+  margin-top: 24px;
   display: flex;
   gap: 10px 22px;
   flex-wrap: wrap;
@@ -194,13 +228,14 @@ a:hover { color: var(--accent-hover); }
 
 /* стартовая анимация hero */
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.hero .kicker, .hero h1, .hero .sub, .hero-cta, .hero-meta {
+.hero .kicker, .hero h1, .hero .sub, .hero-cta, .mac-note, .hero-meta {
   animation: rise 0.7s var(--ease) both;
 }
 .hero h1 { animation-delay: 0.07s; }
 .hero .sub { animation-delay: 0.14s; }
 .hero-cta { animation-delay: 0.21s; }
-.hero-meta { animation-delay: 0.3s; }
+.mac-note { animation-delay: 0.26s; }
+.hero-meta { animation-delay: 0.32s; }
 
 /* ---------- sections ---------- */
 section { padding: 84px 0; border-top: 1px solid var(--border); }
@@ -218,9 +253,89 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
 .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
 .js .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  .hero .kicker, .hero h1, .hero .sub, .hero-cta, .hero-meta { animation: none; }
+  .hero .kicker, .hero h1, .hero .sub, .hero-cta, .mac-note, .hero-meta { animation: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------- app window chrome ---------- */
+#ui { padding-top: 64px; }
+.window {
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-panel);
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+.window-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+.window-bar .dots { display: flex; gap: 7px; }
+.window-bar .dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.window-bar .dots i:nth-child(1) { background: #ff5f57; }
+.window-bar .dots i:nth-child(2) { background: #febc2e; }
+.window-bar .dots i:nth-child(3) { background: #28c840; }
+.window-bar .title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+.window img { width: 100%; }
+.ui-shots { display: grid; gap: 30px; }
+.shot figcaption {
+  margin-top: 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.shot.second { width: min(880px, 100%); margin-left: auto; }
+@media (max-width: 720px) {
+  .shot.second { width: 100%; }
+  .window-bar { height: 30px; }
+  .window-bar .dots i { width: 9px; height: 9px; }
+  .window-bar .title { display: none; }
+}
+
+/* ---------- steps ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.step {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 26px 24px 30px;
+}
+.step .n {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.step .n::after { content: ""; height: 1px; flex: 1; background: var(--border); }
+.step h3 { font-size: 18px; font-weight: 700; line-height: 1.4; }
+@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
 
 /* ---------- gallery ---------- */
 .gallery {
@@ -271,44 +386,17 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
   .card .cap { flex-wrap: wrap; }
 }
 
-/* ---------- steps ---------- */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-.step {
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 26px 24px 28px;
-}
-.step .n {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--accent-text);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.step .n::after { content: ""; height: 1px; flex: 1; background: var(--border); }
-.step h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-.step p { font-size: 14.5px; color: var(--text-2); }
-@media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
-
 /* ---------- features ---------- */
 .features {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 .feat {
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--r-lg);
-  padding: 22px 20px;
+  padding: 24px 22px;
   transition: border-color 0.2s var(--ease);
 }
 .feat:hover { border-color: var(--border-strong); }
@@ -323,9 +411,9 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
   justify-content: center;
   margin-bottom: 16px;
 }
-.feat h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-.feat p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; }
-@media (max-width: 1000px) { .features { grid-template-columns: repeat(2, 1fr); } }
+.feat h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 6px; }
+.feat p { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+@media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .features { grid-template-columns: 1fr; } }
 
 /* ---------- stack ---------- */
@@ -361,8 +449,7 @@ section { padding: 84px 0; border-top: 1px solid var(--border); }
   padding: 24px 26px;
 }
 .disclaimer svg { flex: none; color: var(--warn); margin-top: 2px; }
-.disclaimer strong { display: block; font-size: 16px; margin-bottom: 4px; }
-.disclaimer p { font-size: 14px; color: var(--text-2); }
+.disclaimer p { font-size: 14.5px; color: var(--text-2); }
 
 /* ---------- footer ---------- */
 footer {
@@ -385,13 +472,17 @@ footer {
       <span>Renfo<span class="dot">.</span>studio</span>
     </a>
     <nav class="nav">
-      <a href="#gallery">Примеры</a>
-      <a href="#how">Как работает</a>
-      <a href="#features">Возможности</a>
+      <a href="#ui" data-i18n="nav.ui">Интерфейс</a>
+      <a href="#gallery" data-i18n="nav.examples">Примеры</a>
+      <a href="#features" data-i18n="nav.features">Возможности</a>
       <a class="btn sm" href="https://github.com/markbrutx/renfo-studio/releases/latest">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Скачать
+        <span data-i18n="nav.download">Скачать</span>
       </a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
     </nav>
   </div>
 </header>
@@ -401,56 +492,50 @@ footer {
   <!-- ================= HERO ================= -->
   <div class="hero">
     <div class="wrap">
-      <p class="kicker">Для детских фотографов</p>
-      <h1>Фото ребёнка → образ мечты. <span class="accent">Лицо&nbsp;— на&nbsp;100%&nbsp;родное.</span></h1>
-      <p class="sub">Desktop-приложение для детских фотографов: батч-генерация стилизованных портретов с&nbsp;идеальным сохранением лица. Один кадр со&nbsp;съёмки&nbsp;— готовый к&nbsp;печати образ.</p>
+      <p class="kicker" data-i18n="hero.kicker">Для детских фотографов</p>
+      <h1 data-i18n="hero.h1">Детские портреты в&nbsp;образах. Пакетно.</h1>
+      <p class="sub" data-i18n="hero.sub">Приложение для фотографов: загружаете кадры со&nbsp;съёмки, назначаете костюмы, на&nbsp;выходе&nbsp;— файлы 1792×2400 под&nbsp;печать 15×20&nbsp;см. Лицо берётся с&nbsp;исходного кадра и&nbsp;не&nbsp;редактируется.</p>
       <div class="hero-cta">
         <a class="btn" href="https://github.com/markbrutx/renfo-studio/releases/latest">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Скачать для Windows
+          <span data-i18n="hero.win">Скачать для Windows</span>
         </a>
-        <a class="btn ghost" href="#gallery">Смотреть примеры</a>
+        <a class="btn ghost" href="https://github.com/markbrutx/renfo-studio/releases/latest">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.13 12.72c.03 2.94 2.57 3.92 2.6 3.93-.02.07-.4 1.4-1.34 2.76-.8 1.18-1.64 2.35-2.96 2.38-1.3.02-1.72-.77-3.2-.77-1.49 0-1.95.74-3.18.79-1.28.05-2.24-1.27-3.06-2.44C3.32 16.96 2.06 12.6 3.78 9.63c.85-1.48 2.38-2.42 4.03-2.44 1.26-.03 2.44.84 3.2.84.77 0 2.21-1.04 3.72-.89.63.03 2.41.26 3.55 1.93-.09.06-2.12 1.24-2.15 3.65zM13.7 5.5c.68-.82 1.13-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.17 1.89-1.03 3 1.09.09 2.21-.55 2.88-1.37z"/></svg>
+          <span data-i18n="hero.mac">Скачать для macOS</span>
+        </a>
       </div>
+      <p class="mac-note" data-i18n="hero.macnote">macOS, первый запуск: правая кнопка → Открыть (сборка без подписи Apple)</p>
       <div class="hero-meta">
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Windows 10 / 11</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Печать 2K · 300 dpi</span>
-        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Автообновления</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Windows · macOS</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg><span data-i18n="hero.meta.print">Печать 300 dpi</span></span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg><span data-i18n="hero.meta.updates">Автообновления</span></span>
       </div>
     </div>
   </div>
 
-  <!-- ================= GALLERY ================= -->
-  <section id="gallery">
+  <!-- ================= UI ================= -->
+  <section id="ui">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="kicker">Примеры генераций</p>
-        <h2>Пять режимов. Один узнаваемый ребёнок.</h2>
-        <p>Супергерои, принцессы, фэнтези, космос и&nbsp;профессии&nbsp;— фотореалистичный косплей, никакого мультика. Костюм 1:1 с&nbsp;референсом, детская безопасность встроена в&nbsp;промпты.</p>
+        <p class="kicker" data-i18n="ui.kicker">Интерфейс</p>
+        <h2 data-i18n="ui.h2">Интерфейс, в&nbsp;котором фотограф дома</h2>
+        <p data-i18n="ui.sub">Слева люди, справа костюмы, посередине&nbsp;— до&nbsp;и&nbsp;после.</p>
       </div>
-      <div class="gallery">
-        <figure class="card reveal">
-          <div class="ph"><img src="img/hero-spider.jpg" alt="Мальчик в костюме паучьего супергероя" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">01</span><span class="mode">Супергерои</span><span class="name">Паучий герой</span></figcaption>
+      <div class="ui-shots">
+        <figure class="shot reveal">
+          <div class="window">
+            <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><span class="title">Renfo.studio</span></div>
+            <img src="img/ui-person.png" alt="Окно Renfo.studio: слева список детей, в центре исходное фото и результат в костюме супергероя, справа костюмы и параметры кадра" data-i18n-alt="ui.alt1" width="1280" height="599" fetchpriority="high">
+          </div>
+          <figcaption data-i18n="ui.cap1">До и после</figcaption>
         </figure>
-        <figure class="card reveal">
-          <div class="ph"><img src="img/hero-iron.jpg" alt="Мальчик в железной броне супергероя" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">02</span><span class="mode">Супергерои</span><span class="name">Железная броня</span></figcaption>
-        </figure>
-        <figure class="card reveal">
-          <div class="ph"><img src="img/princess-ice.jpg" alt="Девочка в образе ледяной принцессы" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">03</span><span class="mode">Принцессы</span><span class="name">Ледяная принцесса</span></figcaption>
-        </figure>
-        <figure class="card reveal">
-          <div class="ph"><img src="img/fairy.jpg" alt="Девочка в образе лесной феи" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">04</span><span class="mode">Фэнтези</span><span class="name">Лесная фея</span></figcaption>
-        </figure>
-        <figure class="card reveal">
-          <div class="ph"><img src="img/space.jpg" alt="Ребёнок в скафандре космонавта" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">05</span><span class="mode">Космос</span><span class="name">Юный космонавт</span></figcaption>
-        </figure>
-        <figure class="card reveal">
-          <div class="ph"><img src="img/knight.jpg" alt="Мальчик в доспехах рыцаря" loading="lazy" width="864" height="1184"></div>
-          <figcaption class="cap"><span class="num">06</span><span class="mode">Фэнтези</span><span class="name">Рыцарь</span></figcaption>
+        <figure class="shot second reveal">
+          <div class="window">
+            <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><span class="title">Renfo.studio</span></div>
+            <img src="img/ui-board.png" alt="Окно Renfo.studio: доска со всеми готовыми результатами съёмки" data-i18n-alt="ui.alt2" width="1280" height="599" loading="lazy">
+          </div>
+          <figcaption data-i18n="ui.cap2">Доска результатов</figcaption>
         </figure>
       </div>
     </div>
@@ -460,25 +545,59 @@ footer {
   <section id="how">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="kicker">Как это работает</p>
-        <h2>Вся съёмка — за три шага.</h2>
+        <p class="kicker" data-i18n="how.kicker">Как это работает</p>
+        <h2 data-i18n="how.h2">Три шага до готовой папки</h2>
       </div>
       <div class="steps">
         <div class="step reveal">
           <div class="n">01</div>
-          <h3>Закиньте фото</h3>
-          <p>По одному чёткому кадру на&nbsp;ребёнка&nbsp;— вся группа детского сада или класс сразу в&nbsp;левую панель.</p>
+          <h3 data-i18n="how.s1">Перетащите кадры со&nbsp;съёмки</h3>
         </div>
         <div class="step reveal">
           <div class="n">02</div>
-          <h3>Назначьте образы</h3>
-          <p>Каждому&nbsp;— свой костюм, как выбрали родители на&nbsp;съёмке: Адильхан&nbsp;— паучий герой, Арнур&nbsp;— железная броня.</p>
+          <h3 data-i18n="how.s2">Каждому ребёнку&nbsp;— свой образ из&nbsp;списка</h3>
         </div>
         <div class="step reveal">
           <div class="n">03</div>
-          <h3>Нажмите «Сгенерировать всё»</h3>
-          <p>Батч-очередь обработает всех параллельно. На&nbsp;выходе&nbsp;— печатные кадры 2K (1792×2400, 300&nbsp;dpi, 6×8″).</p>
+          <h3 data-i18n="how.s3">Одна кнопка&nbsp;— очередь складывает готовые файлы в&nbsp;папку</h3>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="kicker" data-i18n="gal.kicker">Примеры генераций</p>
+        <h2 data-i18n="gal.h2">Пять режимов. Один узнаваемый ребёнок.</h2>
+        <p data-i18n="gal.sub">Фотореалистичный косплей, не&nbsp;мультфильм. Костюм повторяет референс один в&nbsp;один.</p>
+      </div>
+      <div class="gallery">
+        <figure class="card reveal">
+          <div class="ph"><img src="img/hero-spider.jpg" alt="Мальчик в костюме паучьего супергероя" data-i18n-alt="gal.alt1" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">01</span><span class="mode" data-i18n="gal.m1">Супергерои</span><span class="name" data-i18n="gal.n1">Паучий герой</span></figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="ph"><img src="img/hero-iron.jpg" alt="Мальчик в железной броне супергероя" data-i18n-alt="gal.alt2" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">02</span><span class="mode" data-i18n="gal.m2">Супергерои</span><span class="name" data-i18n="gal.n2">Железная броня</span></figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="ph"><img src="img/princess-ice.jpg" alt="Девочка в образе ледяной принцессы" data-i18n-alt="gal.alt3" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">03</span><span class="mode" data-i18n="gal.m3">Принцессы</span><span class="name" data-i18n="gal.n3">Ледяная принцесса</span></figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="ph"><img src="img/fairy.jpg" alt="Девочка в образе лесной феи" data-i18n-alt="gal.alt4" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">04</span><span class="mode" data-i18n="gal.m4">Фэнтези</span><span class="name" data-i18n="gal.n4">Лесная фея</span></figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="ph"><img src="img/space.jpg" alt="Ребёнок в скафандре космонавта" data-i18n-alt="gal.alt5" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">05</span><span class="mode" data-i18n="gal.m5">Космос</span><span class="name" data-i18n="gal.n5">Юный космонавт</span></figcaption>
+        </figure>
+        <figure class="card reveal">
+          <div class="ph"><img src="img/knight.jpg" alt="Мальчик в доспехах рыцаря" data-i18n-alt="gal.alt6" loading="lazy" width="864" height="1184"></div>
+          <figcaption class="cap"><span class="num">06</span><span class="mode" data-i18n="gal.m6">Фэнтези</span><span class="name" data-i18n="gal.n6">Рыцарь</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -487,49 +606,39 @@ footer {
   <section id="features">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="kicker">Возможности</p>
-        <h2>Сделано под рабочий процесс фотографа.</h2>
+        <p class="kicker" data-i18n="feat.kicker">Возможности</p>
+        <h2 data-i18n="feat.h2">Что внутри</h2>
       </div>
       <div class="features">
         <div class="feat reveal">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
-          <h3>5 режимов</h3>
-          <p>Супергерои, принцессы, фэнтези, космос, профессии. Архитектура расширяемая&nbsp;— режимы добавляются.</p>
-        </div>
-        <div class="feat reveal">
           <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="10" r="3"/><path d="M7 18c1-2.2 2.8-3.3 5-3.3s4 1.1 5 3.3"/></svg></div>
-          <h3>Идентичность лица</h3>
-          <p>Кроп-референс лица третьим изображением плюс анти-бьютифай промпты: не&nbsp;худеет, не&nbsp;взрослеет, не&nbsp;«ретушируется».</p>
-        </div>
-        <div class="feat reveal">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
-          <h3>Печать 2K · 300 dpi</h3>
-          <p>Пресет print&nbsp;— 1792×2400 (6×8″ @300dpi). Принты и&nbsp;магниты сразу в&nbsp;типографию.</p>
+          <h3 data-i18n="f1.h">Лицо остаётся родным</h3>
+          <p data-i18n="f1.p">Кроп лица уходит в&nbsp;модель отдельным референсом. Без сглаживания, без омоложения, без чужих глаз.</p>
         </div>
         <div class="feat reveal">
           <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
-          <h3>Батч-очередь</h3>
-          <p>Одна кнопка&nbsp;— вся съёмка. Очередь генераций с&nbsp;конкуренцией, ретраями и&nbsp;фолбэком модели.</p>
+          <h3 data-i18n="f2.h">Класс за вечер</h3>
+          <p data-i18n="f2.p">30&nbsp;кадров, список „кто в&nbsp;кого“, одна кнопка. Очередь работает, пока вы пьёте чай.</p>
         </div>
         <div class="feat reveal">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
-          <h3>PSD-экспорт</h3>
-          <p>Всегда PNG, опционально PSD со&nbsp;слоями&nbsp;— доводите ретушь в&nbsp;Photoshop привычными руками.</p>
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+          <h3 data-i18n="f3.h">Сразу в печать</h3>
+          <p data-i18n="f3.p">1792×2400&nbsp;px&nbsp;— ровно 15×20&nbsp;см при 300&nbsp;dpi. Нужна ретушь&nbsp;— рядом ляжет PSD со&nbsp;слоями.</p>
         </div>
         <div class="feat reveal">
           <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
-          <h3>BYOK — свой ключ fal.ai</h3>
-          <p>Генерация оплачивается с&nbsp;вашего баланса fal.ai напрямую, без&nbsp;посредника. Баланс виден в&nbsp;приложении.</p>
+          <h3 data-i18n="f4.h">Свой ключ fal.ai</h3>
+          <p data-i18n="f4.p">Генерации оплачиваются напрямую провайдеру: от&nbsp;$0.04 за&nbsp;кадр. Приложение процент не&nbsp;берёт.</p>
         </div>
         <div class="feat reveal">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-          <h3>Автообновления</h3>
-          <p>Новые режимы и&nbsp;улучшения прилетают сами&nbsp;— встроенный апдейтер проверяет релизы.</p>
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+          <h3 data-i18n="f5.h">Пять режимов + свои костюмы</h3>
+          <p data-i18n="f5.p">Супергерои, принцессы, фэнтези, космос, профессии. Свой костюм добавляется одной картинкой-референсом.</p>
         </div>
         <div class="feat reveal">
-          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Офлайн-детекция лиц</h3>
-          <p>Лица находит локальный rustface&nbsp;— без&nbsp;облака. Фото не&nbsp;сохраняются на&nbsp;серверах генерации.</p>
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div>
+          <h3 data-i18n="f6.h">Настройка кадра</h3>
+          <p data-i18n="f6.p">Фон, план, стиль съёмки, действие: от&nbsp;студийного портрета до&nbsp;полёта над&nbsp;ночным городом.</p>
         </div>
       </div>
     </div>
@@ -539,8 +648,8 @@ footer {
   <section id="stack">
     <div class="wrap">
       <div class="sec-head reveal">
-        <p class="kicker">Под капотом</p>
-        <h2>Технологический стек</h2>
+        <p class="kicker" data-i18n="stack.kicker">Под капотом</p>
+        <h2 data-i18n="stack.h2">Технологический стек</h2>
       </div>
       <div class="stack reveal">
         <span class="chip">Tauri 2</span>
@@ -549,7 +658,7 @@ footer {
         <span class="chip">TypeScript</span>
         <span class="chip">Zustand</span>
         <span class="chip">fal.ai</span>
-        <span class="chip">Supabase (лицензии)</span>
+        <span class="chip" data-i18n="stack.supabase">Supabase (лицензии)</span>
         <span class="chip">GitHub Actions CI/CD</span>
       </div>
     </div>
@@ -560,10 +669,7 @@ footer {
     <div class="wrap">
       <div class="disclaimer reveal">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <div>
-          <strong>Все дети на изображениях — синтетические.</strong>
-          <p>Каждый пример на этой странице сгенерирован ИИ от начала и до конца; таких людей не существует. Реальные детские фотографии обрабатываются локально и не публикуются.</p>
-        </div>
+        <p data-i18n="disc.text">Все дети на&nbsp;этой странице сгенерированы ИИ, таких людей не&nbsp;существует. Реальные фотографии обрабатываются локально и&nbsp;никуда не&nbsp;публикуются.</p>
       </div>
     </div>
   </section>
@@ -572,15 +678,177 @@ footer {
 
 <footer>
   <div class="wrap foot-in">
-    <span>© 2026 Renfo.studio</span>
+    <span data-i18n="foot.copy">© 2026 Renfo.studio. Все права защищены.</span>
     <span class="sp">
-      <a href="https://github.com/markbrutx/renfo-studio/releases">Релизы</a>
-      <a href="https://github.com/markbrutx/renfo-studio/releases/latest">Скачать последнюю версию</a>
+      <a href="https://github.com/markbrutx/renfo-studio/releases" data-i18n="foot.releases">Релизы</a>
     </span>
   </div>
 </footer>
 
 <script>
+/* ---------- i18n ---------- */
+(function () {
+  var DICT = {
+    ru: {
+      "meta.title": "Renfo.studio — детские портреты в образах, приложение для фотографов",
+      "meta.desc": "Приложение для фотографов: загружаете кадры со съёмки, назначаете костюмы, на выходе — файлы 1792×2400 под печать 15×20 см. Лицо берётся с исходного кадра и не редактируется.",
+      "nav.ui": "Интерфейс",
+      "nav.examples": "Примеры",
+      "nav.features": "Возможности",
+      "nav.download": "Скачать",
+      "hero.kicker": "Для детских фотографов",
+      "hero.h1": "Детские портреты в&nbsp;образах. Пакетно.",
+      "hero.sub": "Приложение для фотографов: загружаете кадры со&nbsp;съёмки, назначаете костюмы, на&nbsp;выходе&nbsp;— файлы 1792×2400 под&nbsp;печать 15×20&nbsp;см. Лицо берётся с&nbsp;исходного кадра и&nbsp;не&nbsp;редактируется.",
+      "hero.win": "Скачать для Windows",
+      "hero.mac": "Скачать для macOS",
+      "hero.macnote": "macOS, первый запуск: правая кнопка → Открыть (сборка без подписи Apple)",
+      "hero.meta.print": "Печать 300 dpi",
+      "hero.meta.updates": "Автообновления",
+      "ui.kicker": "Интерфейс",
+      "ui.h2": "Интерфейс, в&nbsp;котором фотограф дома",
+      "ui.sub": "Слева люди, справа костюмы, посередине&nbsp;— до&nbsp;и&nbsp;после.",
+      "ui.cap1": "До и после",
+      "ui.cap2": "Доска результатов",
+      "ui.alt1": "Окно Renfo.studio: слева список детей, в центре исходное фото и результат в костюме супергероя, справа костюмы и параметры кадра",
+      "ui.alt2": "Окно Renfo.studio: доска со всеми готовыми результатами съёмки",
+      "how.kicker": "Как это работает",
+      "how.h2": "Три шага до готовой папки",
+      "how.s1": "Перетащите кадры со&nbsp;съёмки",
+      "how.s2": "Каждому ребёнку&nbsp;— свой образ из&nbsp;списка",
+      "how.s3": "Одна кнопка&nbsp;— очередь складывает готовые файлы в&nbsp;папку",
+      "gal.kicker": "Примеры генераций",
+      "gal.h2": "Пять режимов. Один узнаваемый ребёнок.",
+      "gal.sub": "Фотореалистичный косплей, не&nbsp;мультфильм. Костюм повторяет референс один в&nbsp;один.",
+      "gal.m1": "Супергерои", "gal.n1": "Паучий герой",
+      "gal.m2": "Супергерои", "gal.n2": "Железная броня",
+      "gal.m3": "Принцессы", "gal.n3": "Ледяная принцесса",
+      "gal.m4": "Фэнтези", "gal.n4": "Лесная фея",
+      "gal.m5": "Космос", "gal.n5": "Юный космонавт",
+      "gal.m6": "Фэнтези", "gal.n6": "Рыцарь",
+      "gal.alt1": "Мальчик в костюме паучьего супергероя",
+      "gal.alt2": "Мальчик в железной броне супергероя",
+      "gal.alt3": "Девочка в образе ледяной принцессы",
+      "gal.alt4": "Девочка в образе лесной феи",
+      "gal.alt5": "Ребёнок в скафандре космонавта",
+      "gal.alt6": "Мальчик в доспехах рыцаря",
+      "feat.kicker": "Возможности",
+      "feat.h2": "Что внутри",
+      "f1.h": "Лицо остаётся родным",
+      "f1.p": "Кроп лица уходит в&nbsp;модель отдельным референсом. Без сглаживания, без омоложения, без чужих глаз.",
+      "f2.h": "Класс за вечер",
+      "f2.p": "30&nbsp;кадров, список „кто в&nbsp;кого“, одна кнопка. Очередь работает, пока вы пьёте чай.",
+      "f3.h": "Сразу в печать",
+      "f3.p": "1792×2400&nbsp;px&nbsp;— ровно 15×20&nbsp;см при 300&nbsp;dpi. Нужна ретушь&nbsp;— рядом ляжет PSD со&nbsp;слоями.",
+      "f4.h": "Свой ключ fal.ai",
+      "f4.p": "Генерации оплачиваются напрямую провайдеру: от&nbsp;$0.04 за&nbsp;кадр. Приложение процент не&nbsp;берёт.",
+      "f5.h": "Пять режимов + свои костюмы",
+      "f5.p": "Супергерои, принцессы, фэнтези, космос, профессии. Свой костюм добавляется одной картинкой-референсом.",
+      "f6.h": "Настройка кадра",
+      "f6.p": "Фон, план, стиль съёмки, действие: от&nbsp;студийного портрета до&nbsp;полёта над&nbsp;ночным городом.",
+      "stack.kicker": "Под капотом",
+      "stack.h2": "Технологический стек",
+      "stack.supabase": "Supabase (лицензии)",
+      "disc.text": "Все дети на&nbsp;этой странице сгенерированы ИИ, таких людей не&nbsp;существует. Реальные фотографии обрабатываются локально и&nbsp;никуда не&nbsp;публикуются.",
+      "foot.copy": "© 2026 Renfo.studio. Все права защищены.",
+      "foot.releases": "Релизы"
+    },
+    en: {
+      "meta.title": "Renfo.studio — costumed kids' portraits, an app for photographers",
+      "meta.desc": "An app for photographers: load your frames, assign costumes, get 1792×2400 files for 6×8″ prints. The face comes from the original frame and is not edited.",
+      "nav.ui": "Interface",
+      "nav.examples": "Examples",
+      "nav.features": "Features",
+      "nav.download": "Download",
+      "hero.kicker": "For children's photographers",
+      "hero.h1": "Costumed kids' portraits. In&nbsp;batches.",
+      "hero.sub": "An app for photographers: load your frames, assign costumes, get 1792×2400 files for 6×8″ prints. The face comes from the original frame and is not edited.",
+      "hero.win": "Download for Windows",
+      "hero.mac": "Download for macOS",
+      "hero.macnote": "macOS, first launch: right-click → Open (not Apple-notarized)",
+      "hero.meta.print": "300 dpi print",
+      "hero.meta.updates": "Auto-updates",
+      "ui.kicker": "Interface",
+      "ui.h2": "An interface photographers feel at&nbsp;home&nbsp;in",
+      "ui.sub": "People on the left, costumes on the right, before and after in&nbsp;the middle.",
+      "ui.cap1": "Before and after",
+      "ui.cap2": "Results board",
+      "ui.alt1": "Renfo.studio window: list of kids on the left, source photo and superhero-costume result in the middle, costumes and frame controls on the right",
+      "ui.alt2": "Renfo.studio window: board with all finished results of the shoot",
+      "how.kicker": "How it works",
+      "how.h2": "Three steps to a finished folder",
+      "how.s1": "Drag in the frames from the shoot",
+      "how.s2": "Pick a&nbsp;costume for every kid",
+      "how.s3": "One button&nbsp;— the queue drops finished files into a&nbsp;folder",
+      "gal.kicker": "Sample generations",
+      "gal.h2": "Five modes. One recognizable kid.",
+      "gal.sub": "Photorealistic cosplay, not a&nbsp;cartoon. The costume follows the reference one to&nbsp;one.",
+      "gal.m1": "Superheroes", "gal.n1": "Spider hero",
+      "gal.m2": "Superheroes", "gal.n2": "Iron armor",
+      "gal.m3": "Princesses", "gal.n3": "Ice princess",
+      "gal.m4": "Fantasy", "gal.n4": "Forest fairy",
+      "gal.m5": "Space", "gal.n5": "Young astronaut",
+      "gal.m6": "Fantasy", "gal.n6": "Knight",
+      "gal.alt1": "Boy in a spider superhero costume",
+      "gal.alt2": "Boy in iron superhero armor",
+      "gal.alt3": "Girl as an ice princess",
+      "gal.alt4": "Girl as a forest fairy",
+      "gal.alt5": "Child in an astronaut suit",
+      "gal.alt6": "Boy in knight's armor",
+      "feat.kicker": "Features",
+      "feat.h2": "What's inside",
+      "f1.h": "The face stays real",
+      "f1.p": "A face crop goes to the model as a&nbsp;separate reference. No smoothing, no de-aging, no stranger's eyes.",
+      "f2.h": "A whole class in one evening",
+      "f2.p": "30&nbsp;frames, a&nbsp;who-wears-what list, one button. The queue works while you drink your tea.",
+      "f3.h": "Print-ready",
+      "f3.p": "1792×2400&nbsp;px is exactly 6×8″ at&nbsp;300&nbsp;dpi. Need retouching? A&nbsp;layered PSD lands next to&nbsp;it.",
+      "f4.h": "Your own fal.ai key",
+      "f4.p": "Generations are paid directly to the provider, from $0.04 per frame. The app takes no&nbsp;cut.",
+      "f5.h": "Five modes + custom costumes",
+      "f5.p": "Superheroes, princesses, fantasy, space, professions. Add your own costume with a&nbsp;single reference image.",
+      "f6.h": "Frame controls",
+      "f6.p": "Background, framing, shoot style, action: from a&nbsp;studio portrait to a&nbsp;flight over the night city.",
+      "stack.kicker": "Under the hood",
+      "stack.h2": "Tech stack",
+      "stack.supabase": "Supabase (licensing)",
+      "disc.text": "Every child on this page is AI-generated; no such people exist. Real photos are processed locally and never published.",
+      "foot.copy": "© 2026 Renfo.studio. All rights reserved.",
+      "foot.releases": "Releases"
+    }
+  };
+
+  var KEY = "renfo.lang";
+
+  function setLang(lang) {
+    var d = DICT[lang] || DICT.ru;
+    document.documentElement.lang = lang;
+    document.title = d["meta.title"];
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute("content", d["meta.desc"]);
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var v = d[el.getAttribute("data-i18n")];
+      if (v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      var v = d[el.getAttribute("data-i18n-alt")];
+      if (v != null) el.setAttribute("alt", v);
+    });
+    document.querySelectorAll(".lang button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
+    });
+    try { localStorage.setItem(KEY, lang); } catch (e) {}
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  setLang(saved === "en" ? "en" : "ru");
+})();
+
+/* ---------- scroll reveal ---------- */
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
